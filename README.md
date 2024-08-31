@@ -22,7 +22,6 @@ Both contracts allow users to stake their assets for a specified duration to ear
       - [Deployment](#deployment-1)
       - [Key Functions](#key-functions-1)
   - [Security Considerations](#security-considerations)
-  - [Testing](#testing)
   - [License](#license)
 
 ## Features
@@ -108,11 +107,6 @@ constructor(address _tokenAddress) {
 - **Reentrancy Protection**: Both contracts use `ReentrancyGuard` from OpenZeppelin to prevent reentrancy attacks.
 - **Secure Transfers**: The ERC20 contract uses the `IERC20` interface for secure token transfers.
 
-## Testing
-
-- **Unit Tests**: Write unit tests for both contracts to verify their functionality.
-- **Deployment Tests**: Test the contracts on a testnet to ensure they behave as expected in a live environment.
-- **Security Audits**: Consider performing a security audit to identify and mitigate potential vulnerabilities.
 
 ## License
 
