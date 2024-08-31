@@ -70,26 +70,26 @@ contract StakingEther is ReentrancyGuard {
     }
 
     // Function to allow emergency withdrawal with penalty
-    function emergencyWithdraw() external nonReentrant {
-        require(msg.sender != address(0), "Zero address detected");
-        Stake storage user = userStake[msg.sender];
-        require(user.amount > 0, "No active stake found");
-        require(block.timestamp < user.endTime, "Staking period has ended, use unstake function");
+    // function emergencyWithdraw() external nonReentrant {
+    //     require(msg.sender != address(0), "Zero address detected");
+    //     Stake storage user = userStake[msg.sender];
+    //     require(user.amount > 0, "No active stake found");
+    //     require(block.timestamp < user.endTime, "Staking period has ended, use unstake function");
 
-        uint penaltyFee = (user.amount * 10) / 100; // 10% penalty fee
-        uint amountToTransfer = user.amount - penaltyFee;
+    //     uint penaltyFee = (user.amount * 10) / 100; // 10% penalty fee
+    //     uint amountToTransfer = user.amount - penaltyFee;
 
-        user.amount = 0;
+    //     user.amount = 0;
 
-        require(address(this).balance >= amountToTransfer, "Insufficient balance in contract to pay withdrawal");
+    //     require(address(this).balance >= amountToTransfer, "Insufficient balance in contract to pay withdrawal");
 
-        (bool success, ) = msg.sender.call{value: amountToTransfer}("");
-        require(success, "Transfer failed");
+    //     (bool success, ) = msg.sender.call{value: amountToTransfer}("");
+    //     require(success, "Transfer failed");
 
-        emit EmergencyWithdrawalSuccessful(msg.sender, amountToTransfer, penaltyFee);
+    //     emit EmergencyWithdrawalSuccessful(msg.sender, amountToTransfer, penaltyFee);
 
-        delete userStake[msg.sender];
-    }
+    //     delete userStake[msg.sender];
+    // }
 
     // Function to view the contract's Ether balance
     function getContractBalance() external view returns (uint) {

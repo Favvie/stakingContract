@@ -88,32 +88,33 @@ contract StakingERCToken is ReentrancyGuard {
 
     }
 
-    function emergencyWithdraw() external nonReentrant {
+    
+    // function emergencyWithdraw() external nonReentrant {
 
-        emit Debug("Zero address check passed");
-        require(msg.sender != address(0), "Zero address detected");
+    //     emit Debug("Zero address check passed");
+    //     require(msg.sender != address(0), "Zero address detected");
 
-        Stake storage user = userStake[msg.sender];
+    //     Stake storage user = userStake[msg.sender];
         
-        emit Debug("Active stake check passed");
-        require(user.amount > 0, "No active stake found");
+    //     emit Debug("Active stake check passed");
+    //     require(user.amount > 0, "No active stake found");
 
-        emit Debug("Time check passed");
-        require(block.timestamp < user.endTime, "Your staking duration has ended. Unstake your funds.");
+    //     emit Debug("Time check passed");
+    //     require(block.timestamp < user.endTime, "Your staking duration has ended. Unstake your funds.");
 
-        uint penaltyFee = (5000 * user.amount) / 100000;
+    //     uint penaltyFee = (5000 * user.amount) / 100000;
 
-        emit Debug("Penaltyfee calculated");
+    //     emit Debug("Penaltyfee calculated");
 
-        IERC20(tokenAddress).transfer(msg.sender, user.amount - penaltyFee);
+    //     IERC20(tokenAddress).transfer(msg.sender, user.amount - penaltyFee);
 
-        delete userStake[msg.sender];
+    //     delete userStake[msg.sender];
 
-        emit EmergencyWithdrawalSuccessful(msg.sender, user.startTime, block.timestamp, user.amount - penaltyFee, penaltyFee);
+    //     emit EmergencyWithdrawalSuccessful(msg.sender, user.startTime, block.timestamp, user.amount - penaltyFee, penaltyFee);
 
-        emit Debug('At the end of withdrawal');
+    //     emit Debug('At the end of withdrawal');
 
-    }    
+    // }    
 
     function getMyStake() external view returns (Stake memory) {
         require(msg.sender != address(0), "Zero address detected");
